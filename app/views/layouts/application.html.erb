@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookvault</title>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <header>
+      <div class='title'>Bookvault</div>
+      <div><ul id='menu'>
+        <% if user_signed_in? %>
+        <li><%= link_to 'Books', books_path %></li>
+        <li><%= link_to 'Authors', authors_path %></li>
+        <li><%= link_to 'Publishers', publishers_path %></li>
+        <li><%= link_to 'Categories', categories_path %></li>
+        <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
+        <% end %>
+      </ul></div>
+    </header>
+    <div id='notifications'>
+      <% unless notice.blank? %>
+        <div class="notice"><%= notice %></div>
+      <% end %>
+      <% unless alert.blank? %>
+        <div class="alert"><%= alert %></div>
+      <% end %>
+    </div>
+
+    <div id='content'>
+      <%= yield %>
+    </div>
+
+    <footer></footer>
+  </body>
+</html>
