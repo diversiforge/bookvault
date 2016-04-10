@@ -15,4 +15,5 @@
 //= require jquery-ui
 //= require quagga.min
 //= require jquery.slicknav.min
+//= require bootstrap-sprockets
 //= require_tree .
