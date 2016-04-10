@@ -3,6 +3,10 @@ class Book < ApplicationRecord
   has_many :authors_books, dependent: :destroy, inverse_of: :book
   has_many :categories, -> { distinct }, through: :books_categories
   has_many :books_categories, dependent: :destroy, inverse_of: :book
+  belongs_to :media_type, optional: true
+  belongs_to :source, class_name: TransactingEntity, optional: true
+  belongs_to :recipient, class_name: TransactingEntity, optional: true
+  belongs_to :acquisition_type, optional: true
   belongs_to :publisher, optional: true
 
   accepts_nested_attributes_for :authors

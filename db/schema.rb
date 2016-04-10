@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160305163342) do
+ActiveRecord::Schema.define(version: 20160410201104) do
+
+  create_table "acquisition_types", force: :cascade do |t|
+    t.string "name", null: false
+  end
 
   create_table "authors", force: :cascade do |t|
     t.string   "name"
@@ -49,15 +53,24 @@ ActiveRecord::Schema.define(version: 20160305163342) do
     t.integer  "published_year"
     t.integer  "published_month"
     t.integer  "published_day"
+    t.boolean  "in_library"
+    t.integer  "media_type_id"
+    t.integer  "source_id"
+    t.integer  "recipient_id"
+    t.integer  "acquisition_type_id"
   end
 
+  add_index "books", ["acquisition_type_id"], name: "index_books_on_acquisition_type_id"
   add_index "books", ["date_added"], name: "index_books_on_date_added"
   add_index "books", ["isbn10"], name: "index_books_on_isbn10"
   add_index "books", ["isbn13"], name: "index_books_on_isbn13"
+  add_index "books", ["media_type_id"], name: "index_books_on_media_type_id"
   add_index "books", ["published_day"], name: "index_books_on_published_day"
   add_index "books", ["published_month"], name: "index_books_on_published_month"
   add_index "books", ["published_year"], name: "index_books_on_published_year"
   add_index "books", ["publisher_id"], name: "index_books_on_publisher_id"
+  add_index "books", ["recipient_id"], name: "index_books_on_recipient_id"
+  add_index "books", ["source_id"], name: "index_books_on_source_id"
   add_index "books", ["title"], name: "index_books_on_title"
 
   create_table "books_categories", force: :cascade do |t|
@@ -78,6 +91,10 @@ ActiveRecord::Schema.define(version: 20160305163342) do
 
   add_index "categories", ["name"], name: "index_categories_on_name"
 
+  create_table "media_types", force: :cascade do |t|
+    t.string "name", null: false
+  end
+
   create_table "publishers", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -85,6 +102,14 @@ ActiveRecord::Schema.define(version: 20160305163342) do
   end
 
   add_index "publishers", ["name"], name: "index_publishers_on_name"
+
+  create_table "transacting_entities", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "transacting_entities", ["name"], name: "index_transacting_entities_on_name"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
