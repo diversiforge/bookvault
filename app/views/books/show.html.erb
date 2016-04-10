@@ -3,7 +3,7 @@
 <p>Date added: <%= @book.created_at %></p>
 <p>Publisher: <%= @book.publisher.name %></p>
 <p>Authors: <%= @book.authors.map{|a| a.name}.join(',') unless @book.authors.blank? %></p>
-<p>Categories: <%= @book.categories.map{|c| c.name}.join(',') unless @book.categories.blank? %></p>
+<p>Tags: <%= @book.tag_list.map{|c| c.name}.join(',') unless @book.tag_list.blank? %></p>
 <p>Page count: <%= @book.page_count %></p>
 <section>
   Description: <%= sanitize @book.description %>

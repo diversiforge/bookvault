@@ -9,7 +9,8 @@ class GenericSearchInterface
       interface = "#{s.to_s}_interface".camelize.constantize.new
       case interface
         when GoogleBooksInterface
-          book.build_from_google_books(interface.by_isbn(term))
+          response = interface.by_isbn(term)
+          book.build_from_google_books(response) if response
         else
           nil
       end

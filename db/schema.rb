@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160410201104) do
+ActiveRecord::Schema.define(version: 20160410210236) do
 
   create_table "acquisition_types", force: :cascade do |t|
     t.string "name", null: false
@@ -73,24 +73,6 @@ ActiveRecord::Schema.define(version: 20160410201104) do
   add_index "books", ["source_id"], name: "index_books_on_source_id"
   add_index "books", ["title"], name: "index_books_on_title"
 
-  create_table "books_categories", force: :cascade do |t|
-    t.integer  "book_id"
-    t.integer  "category_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "books_categories", ["book_id"], name: "index_books_categories_on_book_id"
-  add_index "books_categories", ["category_id"], name: "index_books_categories_on_category_id"
-
-  create_table "categories", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "categories", ["name"], name: "index_categories_on_name"
-
   create_table "media_types", force: :cascade do |t|
     t.string "name", null: false
   end
@@ -102,6 +84,26 @@ ActiveRecord::Schema.define(version: 20160410201104) do
   end
 
   add_index "publishers", ["name"], name: "index_publishers_on_name"
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "tag_id"
+    t.string   "taggable_type"
+    t.integer  "taggable_id"
+    t.string   "tagger_type"
+    t.integer  "tagger_id"
+    t.string   "context",       limit: 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+
+  create_table "tags", force: :cascade do |t|
+    t.string  "name"
+    t.integer "taggings_count", default: 0
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true
 
   create_table "transacting_entities", force: :cascade do |t|
     t.string   "name",       null: false

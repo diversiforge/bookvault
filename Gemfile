@@ -22,6 +22,7 @@ gem 'jquery-ui-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 
+gem 'acts-as-taggable-on', git: 'https://github.com/mbleigh/acts-as-taggable-on.git' # also use master until rails 5 support
 gem 'devise', git: 'https://github.com/plataformatec/devise.git' # use master until rails 5 support is released
 gem 'httparty'
 gem 'kaminari'
