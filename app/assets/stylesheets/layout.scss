@@ -1,24 +1,17 @@
 body {
   background-color: #fff;
   color: #333;
-  font-family: verdana, arial, helvetica, sans-serif;
-  /*font-size: 13px;
-  line-height: 18px;*/
   margin: 0;
   padding: 0;
 }
 
 p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  /*font-size: 13px;
-  line-height: 18px;*/
   margin: 33px;
 }
 
 pre {
   background-color: #eee;
   padding: 10px;
-  /*font-size: 11px;*/
 }
 
 a {
@@ -91,13 +84,13 @@ label {
 
 header {
   width: 100%;
-  background-color: rgba(74, 5, 11, 0.8);
+  background-color: $dark;
   color: #fff;
-  padding: 10px 0;
-  display: flex;
+  padding: 10px;
+  display: flex !important;
   justify-content: space-between;
   align-items: center;
-  div { padding: 0 10px;}
+  div > div { padding: 0 10px;}
   a:link, a:visited, a:hover, a:active {color: #fcfcfc;}
   .title {font-size: 1.8em;}
 }
