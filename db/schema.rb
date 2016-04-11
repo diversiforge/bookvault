@@ -87,9 +87,9 @@ ActiveRecord::Schema.define(version: 20160411120955) do
 
   create_table "system_configs", force: :cascade do |t|
     t.string   "library_name"
-    t.boolean  "public_book_display"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.boolean  "public_book_display", default: false, null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   create_table "taggings", force: :cascade do |t|
