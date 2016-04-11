@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   resources :authors
   resources :publishers
   resources :books
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  namespace :admin do
+    resource :system_config, only: [:edit, :update]
+  end
 
   root to: 'books#index'
 end

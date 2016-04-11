@@ -1,0 +1,13 @@
+<h1>System configuration</h1>
+
+<%= form_for @system_config, url: admin_system_config_path do |f| %>
+  <div class='form-group'>
+    <%= f.label :library_name %> <%= f.text_field :library_name, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :public_book_display, 'Allow anonymous users to view all books?' %><br>
+    <%= f.label :public_book_display_true, 'Yes' %> <%= f.radio_button :public_book_display, true %> &mdash; <%= f.label :public_book_display_false, 'No' %> <%= f.radio_button :public_book_display, false %>
+  </div>
+
+  <%= f.submit 'Update Config', class: 'btn btn-default' %>
+<% end %>
