@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160411120955) do
+ActiveRecord::Schema.define(version: 20160411121851) do
 
   create_table "acquisition_types", force: :cascade do |t|
     t.string "name", null: false
@@ -48,12 +48,12 @@ ActiveRecord::Schema.define(version: 20160411120955) do
     t.date     "published_date"
     t.text     "description"
     t.integer  "page_count"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.integer  "published_year"
     t.integer  "published_month"
     t.integer  "published_day"
-    t.boolean  "in_library"
+    t.boolean  "in_library",             default: false, null: false
     t.integer  "media_type_id"
     t.integer  "source_id"
     t.integer  "recipient_id"
