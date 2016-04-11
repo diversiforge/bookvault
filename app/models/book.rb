@@ -16,6 +16,10 @@ class Book < ApplicationRecord
     title || "ISBN: #{isbn13}"
   end
 
+  def display_authors_list
+    authors.map(&:name).join(',')
+  end
+
   def build_from_google_books(google_book)
     self.google_volume_raw_data = google_book
     self.google_volume_id = google_book['id']
