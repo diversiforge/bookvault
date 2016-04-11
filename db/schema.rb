@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160410210236) do
+ActiveRecord::Schema.define(version: 20160411120955) do
 
   create_table "acquisition_types", force: :cascade do |t|
     t.string "name", null: false
@@ -84,6 +84,13 @@ ActiveRecord::Schema.define(version: 20160410210236) do
   end
 
   add_index "publishers", ["name"], name: "index_publishers_on_name"
+
+  create_table "system_configs", force: :cascade do |t|
+    t.string   "library_name"
+    t.boolean  "public_book_display"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
