@@ -26,8 +26,9 @@ gem 'acts-as-taggable-on', git: 'https://github.com/mbleigh/acts-as-taggable-on.
 gem 'bootstrap-sass'
 gem 'devise', git: 'https://github.com/plataformatec/devise.git' # use master until rails 5 support is released
 gem 'httparty'
-gem 'kaminari'
 gem 'nokogiri'
+gem 'ransack'
+gem 'will_paginate'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
