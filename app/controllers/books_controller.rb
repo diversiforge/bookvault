@@ -63,7 +63,9 @@ class BooksController < ApplicationController
   end
 
   def search
-
+    query = Book.ransack(search_params)
+    @books = query.result.includes(:authors).page(params[:page])
+    console
   end
 
   private
@@ -76,4 +78,8 @@ class BooksController < ApplicationController
     def book_params
       params.fetch(:book).permit(:isbn13, :title, :subtitle, :published_date, :description, :page_count, :published_year, :published_month, :published_day)
     end
+
+  def search_params
+    params.fetch(:q).permit!.to_hash
+  end
 end
