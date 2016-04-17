@@ -31,7 +31,7 @@ class Book < ApplicationRecord
     self.publisher = Publisher.find_or_initialize_by(name: google_book['volumeInfo']['publisher'])
     unless google_book['volumeInfo']['categories'].blank?
       google_book['volumeInfo']['categories'].each do |c|
-        self.all_tags_list.add c.split('/').map(&:strip)
+        self.tag_list.add c.split('/').map(&:strip)
       end
     end
 
