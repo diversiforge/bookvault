@@ -1,3 +1,9 @@
+<h2>Scan a barcode:</h2>
+
+<div id="interactive" class="viewport"></div>
+<div id="result_strip">
+    <ul class="thumbnails"></ul>
+</div>
 <div class="controls">
     <fieldset class="input-group">
         <button class="stop">Stop</button>
@@ -54,15 +60,11 @@
         </label>
     </fieldset>
 </div>
-<div id="result_strip">
-    <ul class="thumbnails"></ul>
-</div>
-<div id="interactive" class="viewport"></div>
 
 <div id='book-form'>
   <%= form_for(@book) do |f| %>
     <div class="actions">
-      <%= f.label :isbn13, 'ISBN13' %><%= f.text_field :isbn13 %>
+      <%= f.label :isbn13, 'Or enter ISBN:' %><%= f.text_field :isbn13 %>
       <%= f.submit "Look up ISBN and add" %>
     </div>
   <% end %>

@@ -5,7 +5,7 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = Book.all
+    @books = Book.all.order(created_at: :desc).limit(5)
   end
 
   # GET /books/1
@@ -65,7 +65,6 @@ class BooksController < ApplicationController
   def search
     query = Book.ransack(search_params)
     @books = query.result.includes(:authors).page(params[:page])
-    console
   end
 
   private

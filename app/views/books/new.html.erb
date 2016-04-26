@@ -1,10 +1,8 @@
 <%= javascript_include_tag 'quagga-reader' %>
 <%= stylesheet_link_tag 'quagga' %>
 
-<h1>New Book</h1>
+<h1>Add a Book</h1>
 
 <%= errors_for @book %>
 
 <%= render partial: 'scanner' %>
-
-<%= link_to 'Back', books_path %>
