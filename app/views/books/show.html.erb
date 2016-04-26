@@ -1,14 +1,10 @@
-<h1><%= @book.title %></h1>
+<h1><%= @book.title || @book.display_title %></h1>
 <h2><%= @book.subtitle %></h2>
-<p>Date added: <%= @book.created_at %></p>
-<p>Publisher: <%= @book.publisher.name %></p>
-<p>Authors: <%= @book.authors.map{|a| a.name}.join(', ') unless @book.authors.blank? %></p>
-<p>Tags: <%= @book.all_tags_list.join(', ') unless @book.all_tags_list.blank? %></p>
-<p>Page count: <%= @book.page_count %></p>
-<section>
-  Description: <%= sanitize @book.description %>
-</section>
+<h3>by <%= author_list_links(@book) %></h3>
+<p><%= fancy_tag_list(@book) %></p>
+<p>Published by <b><%= @book.publisher.try(:name) || 'Unknown' %></b> &bull; <b><%= @book.page_count || 'Unknown' %></b> pages &bull; Added on <b><%= @book.created_at.strftime('%Y-%m-%d') %></b> &bull; ISBN <b><%= @book.isbn13 || 'Unknown' %></b> &bull; <%= show_library_status(@book) %></p>
+<section><%= sanitize @book.description %></section>
 
+<br>
+<%= link_to('Update this information', edit_book_path(@book), class: 'btn btn-default') if current_user %>
 
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>

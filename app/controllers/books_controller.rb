@@ -26,6 +26,7 @@ class BooksController < ApplicationController
   # POST /books.json
   def create
     @book = GenericSearchInterface.new.by_isbn(params[:book][:isbn13])
+    @book.in_library = true # for now...
 
     respond_to do |format|
       if @book.save

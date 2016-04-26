@@ -13,7 +13,7 @@ class Book < ApplicationRecord
   accepts_nested_attributes_for :publisher
 
   def display_title
-    title || "ISBN: #{isbn13}"
+    title || "Unknown title (ISBN: #{isbn13 || 'unknown'})"
   end
 
   def display_authors_list
