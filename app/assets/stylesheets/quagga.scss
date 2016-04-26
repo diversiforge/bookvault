@@ -4,7 +4,6 @@
     width: 640px;
 }
 #interactive.viewport canvas, video {
-    float: left;
     width: 640px;
 }
 #interactive.viewport canvas.drawingBuffer, video.drawingBuffer {
@@ -14,13 +13,13 @@
     border: medium none;
 }
 .controls .input-group {
-    float: left;
+    display: inline;
 }
 .controls .input-group input, .controls .input-group button {
     display: block;
 }
 .controls .reader-config-group {
-    float: right;
+    display: inline;
 }
 .controls .reader-config-group label {
     display: block;
@@ -28,12 +27,6 @@
 .controls .reader-config-group label span {
     display: inline-block;
     text-align: right;
-    width: 11rem;
-}
-.controls::after {
-    clear: both;
-    content: "";
-    display: block;
 }
 #result_strip {
     border-bottom: 1px solid #eee;
