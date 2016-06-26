@@ -41,4 +41,12 @@ class Book < ApplicationRecord
       end
     end
   end
+
+  def self.in_library
+    where(in_library: true)
+  end
+
+  def self.newest(number_of_books)
+    in_library.order(created_at: :desc).limit(number_of_books)
+  end
 end
