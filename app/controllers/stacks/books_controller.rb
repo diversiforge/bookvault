@@ -12,6 +12,10 @@ class Stacks::BooksController < StacksController
     @books = query.result.includes(:authors).page(params[:page])
   end
 
+  def advanced_search
+
+  end
+
   private
 
   def search_params

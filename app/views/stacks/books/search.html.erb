@@ -1,2 +1,2 @@
 <h1>Search results for "<%= params[:q]['title_cont'] %>"</h1>
-<%= render partial: 'result_list' %>
+<%= render partial: 'shared/result_list', locals: {books: @books} %>

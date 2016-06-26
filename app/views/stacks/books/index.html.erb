@@ -1,8 +1,8 @@
 <h1>Search for Books</h1>
 
-<%= search_form_for Book.ransack, url: search_books_path, method: :post do |f| %>
+<%= search_form_for Book.ransack, url: search_stacks_books_path, method: :post do |f| %>
   <%= f.label :title_cont %>
-  <%= f.search_field :title_cont %>
+  <%= f.search_field :title_cont, style: 'width: 50em' %>
 
   <%= f.submit %>
 <% end %>
