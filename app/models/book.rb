@@ -27,7 +27,14 @@ class Book < ApplicationRecord
     self.subtitle = google_book['volumeInfo']['subtitle']
     self.description = google_book['volumeInfo']['description']
     self.page_count = google_book['volumeInfo']['pageCount']
-    # add published date here
+
+    # we will more often get YYYY rather than YYYY-MM or YYYY-MM-DD
+    # this is okay
+    published_date = google_book['volumeInfo']['publishedDate'].split('-')
+    self.published_year = published_date[0]
+    self.published_month = published_date[1]
+    self.published_day = published_date[2]
+
     self.publisher = Publisher.find_or_initialize_by(name: google_book['volumeInfo']['publisher'])
     unless google_book['volumeInfo']['categories'].blank?
       google_book['volumeInfo']['categories'].each do |c|
@@ -40,6 +47,8 @@ class Book < ApplicationRecord
         self.authors << Author.find_or_initialize_by(name: a)
       end
     end
+
+    self
   end
 
   def self.in_library
@@ -47,6 +56,20 @@ class Book < ApplicationRecord
   end
 
   def self.newest(number_of_books)
-    in_library.order(created_at: :desc).limit(number_of_books)
+    in_library.order(date_added: :desc).limit(number_of_books)
+  end
+
+  def published_on
+    # :(
+    on = published_year.to_s
+    if published_month
+      on << '-'
+      on << (published_month.to_s.size == 1 ? "0#{published_month}" : published_month)
+    end
+    if published_day
+      on << '-'
+      on << (published_day.to_s.size == 1 ? "0#{published_day}" : published_day)
+    end
+    on
   end
 end
