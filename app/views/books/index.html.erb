@@ -9,3 +9,12 @@
 
 <div class='h3'>Newest Books</div>
 <%= render partial: 'shared/result_list', locals: {books: @books} %>
+
+<h2>Browse by Tag</h2>
+<div>
+  <% tag_cloud(@tags, %w()) do |tag, css_class| %>
+    <%= link_to tag.name, '#', class: 'label label-primary' %>
+  <% end %>
+</div>
+
+<%= button_to 'Export', export_books_path %>

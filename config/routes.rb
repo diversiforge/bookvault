@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :publishers
   resources :books do
     post :search, on: :collection
+    post :export, on: :collection
   end
 
   namespace :admin do

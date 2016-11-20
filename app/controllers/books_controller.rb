@@ -6,6 +6,7 @@ class BooksController < ApplicationController
   # GET /books.json
   def index
     @books = Book.all.order(created_at: :desc).limit(5)
+    @tags = Book.tag_counts_on(:tags)
   end
 
   # GET /books/1
@@ -66,6 +67,13 @@ class BooksController < ApplicationController
   def search
     query = Book.ransack(search_params)
     @books = query.result.includes(:authors).page(params[:page])
+  end
+
+  def export
+    BookExporter.new(Book.in_library).export
+    AuthorExporter.new(Author.all).export
+    flash[:notice] = 'Done exporting'
+    redirect_to books_path
   end
 
   private

@@ -72,4 +72,8 @@ class Book < ApplicationRecord
     end
     on
   end
+
+  def to_dokuwiki_title
+    "[[books:#{title.parameterize}|#{title}]]"
+  end
 end

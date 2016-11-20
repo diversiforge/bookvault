@@ -23,3 +23,7 @@
 config/database.yml
 config/secrets.yml
 .idea
+output/books.txt
+output/authors.txt
+output/books/*
+output/authors/*
