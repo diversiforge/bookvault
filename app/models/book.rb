@@ -1,6 +1,6 @@
 class Book < ApplicationRecord
-  has_many :authors, -> { distinct }, through: :authors_books
   has_many :authors_books, dependent: :destroy, inverse_of: :book
+  has_many :authors, -> { distinct }, through: :authors_books
   belongs_to :media_type, optional: true
   belongs_to :source, class_name: TransactingEntity, optional: true
   belongs_to :recipient, class_name: TransactingEntity, optional: true
