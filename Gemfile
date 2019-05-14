@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '5.1.4'
+gem 'rails', '5.2.3'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -24,7 +24,10 @@ gem 'jbuilder'
 
 gem 'acts-as-taggable-on', git: 'https://github.com/mbleigh/acts-as-taggable-on.git' # also use master until rails 5 support
 gem 'bootstrap-sass'
+gem 'date'
 gem 'devise'
+gem 'did_you_mean'
+gem 'fileutils'
 gem 'httparty'
 gem 'nokogiri'
 gem 'ransack'
@@ -36,7 +39,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'rails-footnotes'
   gem 'web-console'
   gem 'listen'
 end

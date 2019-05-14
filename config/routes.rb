@@ -7,19 +7,15 @@ Rails.application.routes.draw do
     post :export, on: :collection
   end
 
+  get '/search', to: 'search#index'
+  get '/search/barcode', to: 'search#barcode'
+  get '/search/title', to: 'search#title'
+  post '/search/by_barcode', to: 'search#by_barcode'
+  post '/search/by_title', to: 'search#by_title'
+
   namespace :admin do
     resource :system_config, only: [:edit, :update]
     resources :users
-  end
-
-  # public controllers
-  namespace :stacks do
-    resources :books, only: [:index, :show] do
-      post :search, on: :collection
-    end
-    resource :browse, controller: 'browse', only: :show do
-      get :by_tag
-    end
   end
 
   root to: 'books#index'
