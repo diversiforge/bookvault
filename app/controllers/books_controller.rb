@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :update_from_open_library]
 
   # GET /books
   # GET /books.json
@@ -74,6 +74,16 @@ class BooksController < ApplicationController
     AuthorExporter.new(Author.all).export
     flash[:notice] = 'Done exporting'
     redirect_to books_path
+  end
+
+  def update_from_google_books
+    
+  end
+
+  def update_from_open_library
+    new_book = GenericSearchInterface.new.by_isbn(@book.isbn13, :open_library)
+    new_book.save
+    redirect_to @book
   end
 
   private

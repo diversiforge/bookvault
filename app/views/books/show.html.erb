@@ -7,4 +7,6 @@
 
 <br>
 <%= link_to('Update this information', edit_book_path(@book), class: 'btn btn-default') if current_user %>
+<br>
+<%= link_to('Update this information from Open Library', update_from_open_library_book_path(@book), class: 'btn btn-default', method: :post) if current_user %>
 

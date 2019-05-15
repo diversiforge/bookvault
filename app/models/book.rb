@@ -2,8 +2,8 @@ class Book < ApplicationRecord
   has_many :authors_books, dependent: :destroy, inverse_of: :book
   has_many :authors, -> { distinct }, through: :authors_books
   belongs_to :media_type, optional: true
-  belongs_to :source, class_name: TransactingEntity, optional: true
-  belongs_to :recipient, class_name: TransactingEntity, optional: true
+  belongs_to :source, class_name: 'TransactingEntity', optional: true
+  belongs_to :recipient, class_name: 'TransactingEntity', optional: true
   belongs_to :acquisition_type, optional: true
   belongs_to :publisher, optional: true
   acts_as_taggable
@@ -49,6 +49,27 @@ class Book < ApplicationRecord
     end
 
     self
+  end
+
+  def build_from_open_library(open_library_book)
+    olb = open_library_book
+    self.title = olb['title']
+    self.page_count = olb['number_of_pages']
+
+    published_date = olb['publish_date'].split('-')
+    self.published_year = published_date[0]
+    self.published_month = published_date[1]
+    self.published_day = published_date[2]
+
+    self.publisher = Publisher.find_or_initialize_by(name: olb['publishers'][0]['name'])
+
+    olb['subjects'].each do |sub|
+      self.tag_list.add sub['name']
+    end
+
+    olb['authors'].each do |author|
+      self.authors << Author.find_or_initialize_by(name: author['name'])
+    end
   end
 
   def self.in_library

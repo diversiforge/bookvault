@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :books do
     post :search, on: :collection
     post :export, on: :collection
+    post :update_from_open_library, on: :member
   end
 
   get '/search', to: 'search#index'

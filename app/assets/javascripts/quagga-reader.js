@@ -15,7 +15,7 @@ $(function() {
 
             $(".controls").on("click", "button.stop", function(e) {
                 e.preventDefault();
-                Quagga.stop();
+              Quagga.stop();
             });
 
             $(".controls .reader-config-group").on("change", "input, select", function(e) {
@@ -91,8 +91,8 @@ $(function() {
             inputStream: {
                 type : "LiveStream",
                 constraints: {
-                    width: 640,
-                    height: 480,
+                    width: 800,
+                    height: 600,
                     facing: "environment" // or user
                 }
             },
