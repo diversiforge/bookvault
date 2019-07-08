@@ -65,11 +65,11 @@ class Book < ApplicationRecord
 
     olb['subjects'].each do |sub|
       self.tag_list.add sub['name']
-    end
+    end if olb['subjects']
 
     olb['authors'].each do |author|
       self.authors << Author.find_or_initialize_by(name: author['name'])
-    end
+    end if olb['authors']
   end
 
   def self.in_library
