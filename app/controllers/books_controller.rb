@@ -19,6 +19,14 @@ class BooksController < ApplicationController
     @book = Book.new
   end
 
+  def new_manual
+    @book = Book.new
+  end
+
+  def new_by_isbn
+    @book = Book.new
+  end
+
   # GET /books/1/edit
   def edit
   end
@@ -26,13 +34,44 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.json
   def create
-    @book = GenericSearchInterface.new.by_isbn(params[:book][:isbn13])
+    isbn = !params[:book][:isbn13].blank? ? params[:book][:isbn13] : params[:book][:isbn10]
+    @book = GenericSearchInterface.new.by_isbn(isbn)
     @book.in_library = true # for now...
 
     respond_to do |format|
       if @book.save
         format.html { redirect_to @book, notice: 'Book was successfully created.' }
-        format.json { render :show, status: :created, location: @book }
+        format.json { render json: @book.to_json, status: :created }
+      else
+        format.html { render :new }
+        format.json { render json: @book.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def create_by_isbn
+    isbn = !params[:book][:isbn13].blank? ? params[:book][:isbn13] : params[:book][:isbn10]
+    @book = GenericSearchInterface.new.by_isbn(isbn)
+    @book.in_library = true # for now...
+
+    respond_to do |format|
+      if @book.save
+        flash.now[:notice] = "#{@book.title} was successfully created"
+        format.html { redirect_to new_by_isbn_books_path, notice: "#{@book.title} was successfully created." }
+        format.json { render json: @book.to_json, status: :created }
+      else
+        format.html { render :new }
+        format.json { render json: @book.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def create_manual
+    @book = Book.new(book_params)
+    respond_to do |format|
+      if @book.save
+        format.html { redirect_to @book, notice: 'Book was successfully created.' }
+        format.json { render json: @book.to_json, status: :created }
       else
         format.html { render :new }
         format.json { render json: @book.errors, status: :unprocessable_entity }

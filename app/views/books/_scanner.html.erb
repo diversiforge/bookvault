@@ -4,6 +4,7 @@
   <div class="controls">
       <fieldset class="input-group">
           <button class="stop">Cancel scanning</button>
+          <button class="start">Restart scanning</button>
       </fieldset>
       <fieldset class="reader-config-group">
           <label>
@@ -21,10 +22,25 @@
 </div>
 
 <div id='book-form'>
-  <%= form_for(@book) do |f| %>
+  <%= form_for(@book, remote: true, format: :json) do |f| %>
     <div class="actions">
       <%= f.label :isbn13, 'ISBN:' %><%= f.text_field :isbn13 %>
       <%= f.submit "Look up ISBN and add" %>
     </div>
   <% end %>
 </div>
+
+<div>
+  Status: <span id="request_status"></span>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#new_book").on('ajax:success', function(event, data) {
+      $('#request_status').text(data.title + " successfully added.");
+    }).on('ajax:error', function(event, data) {
+      $('#request_status').text('Adding ' + $('#book_isbn13').val() + ' failed');
+      console.log(data);
+    });
+  });
+</script>

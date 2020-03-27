@@ -1,0 +1,15 @@
+<h1>Add a Book</h1>
+
+<%= errors_for @book %>
+
+<%= form_for(@book, url: create_by_isbn_books_path) do |f| %>
+  <div class='form-group'>
+    <%= f.label :isbn13, 'ISBN13' %><%= f.text_field :isbn13, class: 'form-control' %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :isbn10, 'ISBN10' %><%= f.text_field :isbn10, class: 'form-control', autofocus: true %>
+  </div>
+
+  <%= f.submit 'Save', class: 'btn btn-primary' %>
+<% end %>

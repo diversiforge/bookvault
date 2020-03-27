@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     post :search, on: :collection
     post :export, on: :collection
     post :update_from_open_library, on: :member
+    get :new_by_isbn, on: :collection
+    get :new_manual, on: :collection
+    post :create_manual, on: :collection
+    post :create_by_isbn, on: :collection
   end
 
   get '/search', to: 'search#index'

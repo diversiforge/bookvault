@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require quagga.min
+//= require quagga
 //= require jquery.slicknav.min
 //= require bootstrap-sprockets
 //= require_tree .

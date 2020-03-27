@@ -1,4 +1,4 @@
-<%= form_for(book) do |f| %>
+<%= form_for(book, url: create_manual_books_path) do |f| %>
   <div class='form-group'>
     <%= f.label :title %><%= f.text_field :title, class: 'form-control' %>
   </div>
@@ -27,6 +27,10 @@
 
   <div class='form-group'>
     <%= f.label :isbn13, 'ISBN13' %><%= f.text_field :isbn13, class: 'form-control' %>
+  </div>
+
+  <div class='form-group'>
+    <%= f.label :isbn10, 'ISBN10' %><%= f.text_field :isbn10, class: 'form-control' %>
   </div>
 
   <div class='form-group'>

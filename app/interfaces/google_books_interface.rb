@@ -3,7 +3,8 @@ class GoogleBooksInterface
     # queries Google Books by isbn, then queries again by volume ID
     # to ensure we get all info
     # (we may get a partial response from the isbn query)
-    isbn = term.gsub(/\D/, '')
+    #isbn = term.gsub(/\D/, '')
+    isbn = term
     Rails.logger.info(isbn)
 
     request = "https://www.googleapis.com/books/v1/volumes?q=isbn:#{isbn}"

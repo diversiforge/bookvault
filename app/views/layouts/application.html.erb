@@ -15,7 +15,9 @@
       <div><ul id='menu'>
         <% if user_signed_in? %>
         <li><%= link_to 'Search for Books', books_path %> |</li>
-        <li><%= link_to 'Add a Book', new_book_path %> |</li>
+        <li><%= link_to '+Scan', new_book_path %> |</li>
+        <li><%= link_to '+ISBN', new_by_isbn_books_path %> |</li>
+        <li><%= link_to '+Manual', new_manual_books_path %> |</li>
         <li><%= link_to 'Settings', edit_admin_system_config_path %> |</li>
         <li><%= link_to 'Users', admin_users_path %> |</li>
         <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>

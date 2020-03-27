@@ -4,7 +4,12 @@ class GenericSearchInterface
   def by_isbn(term, *sources)
     available_sources = [:google_books, :open_library]
     sources = sources.blank? ? available_sources : (available_sources & sources)
-    book = Book.find_or_initialize_by(isbn13: term)
+    if term.length == 13 # isbn13
+      book = Book.find_or_initialize_by(isbn13: term)
+    else # isbn10
+      book = Book.find_or_initialize_by(isbn10: term)
+    end
+
     sources.each do |s|
       interface = "#{s.to_s}_interface".camelize.constantize.new
       case interface

@@ -111,8 +111,14 @@ $(function() {
 
     App.init();
 
+  $(".controls").on("click", "button.start", function(e) {
+    e.preventDefault();
+    //Quagga.start();
+    App.init();
+  });
+
     Quagga.onDetected(function(result) {
-      Quagga.stop();
+      //Quagga.stop();
       //$('#scanner').hide(400);
       var code = result.codeResult.code;
 
@@ -125,6 +131,7 @@ $(function() {
         //$node.find("h4.code").html(code);
         $("#result_strip ul.thumbnails").prepend($node);
         $('#book_isbn13').val(code);
+        //$('#new_book').submit();
         }
     });
 });
